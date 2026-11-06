@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Connecting TikTok – ClutchClip Publisher</title>
+<link rel="icon" href="logo.png"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<h1>Connecting TikTok…</h1>
+<p id="msg">Returning you to ClutchClip Publisher.</p>
+<p class="mute">This page only forwards TikTok's one-time sign-in code to the ClutchClip Publisher app running on the
+Clutch Clip team's own computer. It stores nothing and sends nothing anywhere else.</p>
+</main>
+<script>
+  // Forward ?code=...&state=... (or ?error=...) to the local app. Only the query string is passed on.
+  (function () {
+    var q = window.location.search || "";
+    if (!/[?&](code|error)=/.test(q)) {
+      document.getElementById("msg").textContent = "Nothing to do here.";
+      return;
+    }
+    window.location.replace("http://localhost:8000/oauth/tiktok/callback" + q);
+  })();
+</script>
+</body>
+</html>
